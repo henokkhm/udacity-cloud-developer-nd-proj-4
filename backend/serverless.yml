@@ -237,6 +237,17 @@ resources:
           Ref: ApiGatewayRestApi
         ValidateRequestBody: true
         ValidateRequestParameters: false
+
+          
+    RequestBodyValidator:
+      Type: AWS::ApiGateway::RequestValidator
+      Properties:
+        Name: 'request-body-validator'
+        RestApiId:
+          Ref: ApiGatewayRestApi
+        ValidateRequestBody: true
+        ValidateRequestParameters: false
+
     AttachmentsBucket:
       Type: AWS::S3::Bucket
       Properties:
@@ -254,21 +265,6 @@ resources:
                 - DELETE
                 - HEAD
               MaxAge: 300
-          
-    RequestBodyValidator:
-      Type: AWS::ApiGateway::RequestValidator
-      Properties:
-        Name: 'request-body-validator'
-        RestApiId:
-          Ref: ApiGatewayRestApi
-        ValidateRequestBody: true
-        ValidateRequestParameters: false
-
-    # TODO: Complete the bucket properties below.
-    # Do not forget to add the CorsConfiguration propoerty
-    AttachmentsBucket:
-      Type: AWS::S3::Bucket
-      Properties:
 
     # TODO: Complete the policy below and attach it to the bucket defined above
     # For cross referencing the name of the bucket, use "!Ref AttachmentsBucket"
