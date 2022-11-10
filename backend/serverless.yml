@@ -1,6 +1,6 @@
 org: henokhm
-app: serverless-todo-app
-service: serverless-todo-app
+app: serverless-todo-proj-4
+service: serverless-todo-proj-4
 
 plugins:
   - serverless-webpack
