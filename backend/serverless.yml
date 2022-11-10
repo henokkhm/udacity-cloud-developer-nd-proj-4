@@ -254,6 +254,15 @@ resources:
                 - DELETE
                 - HEAD
               MaxAge: 300
+          
+    RequestBodyValidator:
+      Type: AWS::ApiGateway::RequestValidator
+      Properties:
+        Name: 'request-body-validator'
+        RestApiId:
+          Ref: ApiGatewayRestApi
+        ValidateRequestBody: true
+        ValidateRequestParameters: false
 
     # TODO: Complete the bucket properties below.
     # Do not forget to add the CorsConfiguration propoerty
