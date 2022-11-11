@@ -10,7 +10,6 @@ plugins:
 provider:
   name: aws
   runtime: nodejs12.x
-  # lambdaHashingVersion: "20201221"
 
   stage: ${opt:stage, 'dev'}
   region: ${opt:region, 'us-east-1'}
@@ -19,63 +18,13 @@ provider:
     lambda: true
     apiGateway: true
 
-  # Use these variables in the functions and resouorces section below. For example,
-  # ${self:provider.environment.ATTACHMENT_S3_BUCKET}
   environment:
     PROJECT_NAME: serverless-todo-proj-4
     TODOS_TABLE: serverless-todo-proj-4-${self:provider.stage}
-    # TODOS_CREATED_AT_INDEX: CreatedAtIndex
     S3_BUCKET_NAME: serverless-todo-proj-4-images-${self:provider.stage}
-    # SIGNED_URL_EXPIRATION: 300
 
-custom:
-  documentation:
-    api:
-      info:
-        version: "1.0.0"
-        title: serverless-api
-        description: serverless-api
-    models:
-      - name: CreateTodoRequest
-        contentType: "application/json"
-        schema:
-          required:
-            - name
-            - dueDate
-          properties:
-            name:
-              minLength: 1
-              type: string
-            dueDate:
-              type: string
-      - name: UpdateTodoRequest
-        contentType: "application/json"
-        schema:
-          required:
-            - name
-            - dueDate
-            - done
-          properties:
-            name:
-              minLength: 1
-              type: string
-            dueDate:
-              type: string
-            done:
-              type: boolean
-
-  # logs:
-  #   # Enable API Gateway logs
-  #   restApi: true
-
-  # iam:
-  #   role:
-  #     statements:
-  #       - Effect: Allow
-  #         Action:
-  #           - xray:PutTelemetryRecords
-  #           - xray:PutTraceSegments
-  #         Resource: "*"
+  logs:
+    restApi: true
 
 functions:
   Auth:
