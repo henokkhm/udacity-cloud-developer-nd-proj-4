@@ -64,16 +64,18 @@ export class ToDoAccess {
         userId: userId,
         todoId: todoId,
       },
-      UpdateExpression: "set #a = :a, #b = :b, #c = :c",
+      UpdateExpression: "set #a = :a, #b = :b, #c = :c, #d = :d",
       ExpressionAttributeNames: {
         "#a": "name",
         "#b": "dueDate",
         "#c": "done",
+        "#d": "attachmentUrl",
       },
       ExpressionAttributeValues: {
         ":a": todoUpdate["name"],
         ":b": todoUpdate["dueDate"],
         ":c": todoUpdate["done"],
+        ":d": todoUpdate["attachmentUrl"],
       },
       ReturnValues: "ALL_NEW",
     };
