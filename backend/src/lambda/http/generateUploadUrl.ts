@@ -6,12 +6,15 @@ import {
   APIGatewayProxyHandler,
 } from "aws-lambda";
 import { generateUploadUrl } from "../../businessLogic/ToDo";
+import { createLogger } from "../../utils/logger";
 
+const logger = createLogger("Generate upload Url");
 export const handler: APIGatewayProxyHandler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
   console.log("Processing Event ", event);
   const todoId = event.pathParameters.todoId;
+  logger.info("Generating upload url for todo with id ", todoId);
 
   const URL = await generateUploadUrl(todoId);
 

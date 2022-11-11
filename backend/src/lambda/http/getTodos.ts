@@ -6,7 +6,9 @@ import {
   APIGatewayProxyHandler,
 } from "aws-lambda";
 import { getAllToDo } from "../../businessLogic/ToDo";
+import { createLogger } from "../../utils/logger";
 
+const logger = createLogger("Get todos");
 export const handler: APIGatewayProxyHandler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
@@ -14,6 +16,7 @@ export const handler: APIGatewayProxyHandler = async (
   const authorization = event.headers.Authorization;
   const split = authorization.split(" ");
   const jwtToken = split[1];
+  logger.info("Getting all todos");
 
   const toDos = await getAllToDo(jwtToken);
 
